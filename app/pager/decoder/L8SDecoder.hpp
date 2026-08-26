@@ -24,6 +24,14 @@ public:
         return (data & stationMask) >> stationOffset;
     }
 
+    uint32_t SetStation(uint32_t data, uint16_t stationNum) {
+        return (data & ~stationMask) | ((uint32_t)stationNum << stationOffset);
+    }
+
+    uint16_t GetMaxStation() {
+        return stationMask >> stationOffset;
+    }
+
     uint16_t GetPager(uint32_t data) {
         return data & pagerMask;
     }

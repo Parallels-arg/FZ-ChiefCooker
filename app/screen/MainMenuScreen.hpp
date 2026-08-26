@@ -10,6 +10,7 @@
 
 #include "SelectCategoryScreen.hpp"
 #include "ScanStationsScreen.hpp"
+#include "BruteForceSettingsScreen.hpp"
 
 class MainMenuScreen {
 private:
@@ -23,6 +24,7 @@ public:
         menuView = new SubMenuUiView("Chief Cooker");
         menuView->AddItem("Scan for station signals", HANDLER_1ARG(&MainMenuScreen::scanStationsMenuPressed));
         menuView->AddItem("Saved stations database", HANDLER_1ARG(&MainMenuScreen::stationDatabasePressed));
+        menuView->AddItem("Brute force station ID", HANDLER_1ARG(&MainMenuScreen::bruteForcePressed));
         menuView->AddItem("About / Manual", HANDLER_1ARG(&MainMenuScreen::aboutPressed));
         menuView->SetOnDestroyHandler(HANDLER(&MainMenuScreen::destroy));
     }
@@ -61,6 +63,13 @@ private:
     void categorySelected(CategoryType categoryType, const char* category) {
         UiManager::GetInstance()->ShowLoading();
         UiManager::GetInstance()->PushView((new ScanStationsScreen(config, categoryType, category))->GetView());
+    }
+
+    void bruteForcePressed(uint32_t) {
+        PagerReceiver* receiver = new PagerReceiver(config);
+        SubGhzModule* subghzModule = new SubGhzModule(config->Frequency);
+        UiManager::GetInstance()->ShowLoading();
+        UiManager::GetInstance()->PushView((new BruteForceSettingsScreen(config, subghzModule, receiver))->GetView());
     }
 
     void aboutPressed(uint32_t index) {

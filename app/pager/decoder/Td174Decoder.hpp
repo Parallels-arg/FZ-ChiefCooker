@@ -31,6 +31,14 @@ public:
         return reverseBits(stationReversed, stationBitCount);
     }
 
+    uint32_t SetStation(uint32_t data, uint16_t stationNum) {
+        return (data & ~stationMask) | ((uint32_t)reverseBits(stationNum, stationBitCount) << stationOffset);
+    }
+
+    uint16_t GetMaxStation() {
+        return (1 << stationBitCount) - 1;
+    }
+
     uint16_t GetPager(uint32_t data) {
         uint32_t pagerReversed = data & pagerMask;
         return reverseBits(pagerReversed, pagerBitCount);

@@ -11,7 +11,8 @@ public:
     virtual const char* GetShortName() = 0;
 
     virtual uint16_t GetStation(uint32_t data) = 0;
-
+    virtual uint32_t SetStation(uint32_t data, uint16_t stationNum) = 0;
+    virtual uint16_t GetMaxStation() = 0;
     virtual uint16_t GetPager(uint32_t data) = 0;
     virtual uint32_t SetPager(uint32_t data, uint16_t pagerNum) = 0;
 

@@ -23,11 +23,11 @@ static int8_t stationScreenColumnOffsets[]{
 };
 static Font stationScreenColumnFonts[]{
     FontSecondary, // station name (if known)
-    FontBatteryPercent, // hex
+    FontSecondary, // hex
     FontSecondary, // station
     FontSecondary, // pager
-    FontBatteryPercent, // action
-    FontBatteryPercent, // repeats
+    FontSecondary, // action
+    FontSecondary, // repeats
 };
 
 static Align stationScreenColumnAlignments[]{
